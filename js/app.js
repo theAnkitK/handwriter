@@ -28,6 +28,7 @@ const DEFAULTS = {
   plainSpacing: 9,
   headerMode: 'none',
   fields: { name: '', roll: '', cls: '', subject: '', teacher: '', date: '', title: '', institute: '', kind: '' },
+  customFields: [],
   pageNumbers: false,
   dateOnPages: false,
   effect: 'none',
@@ -42,7 +43,14 @@ function loadState() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORE) || 'null');
     if (saved && typeof saved === 'object') {
-      return { ...DEFAULTS, ...saved, fields: { ...DEFAULTS.fields, ...(saved.fields || {}) } };
+      return {
+        ...DEFAULTS,
+        ...saved,
+        fields: { ...DEFAULTS.fields, ...(saved.fields || {}) },
+        customFields: Array.isArray(saved.customFields)
+          ? saved.customFields.map((c) => ({ title: String(c.title || ''), value: String(c.value || '') }))
+          : [],
+      };
     }
   } catch {
     /* storage unavailable */
@@ -229,6 +237,46 @@ function syncSelections() {
   $('plain-row').hidden = !paper.plain;
 }
 
+function syncCustomFields() {
+  const container = $('custom-fields');
+  if (!container) return;
+  container.innerHTML = '';
+  (state.customFields || []).forEach((field, index) => {
+    const row = document.createElement('div');
+    row.className = 'custom-field-row';
+    row.innerHTML = `
+      <label>Field title
+        <input type="text" dir="auto" placeholder="e.g. Batch" value="${field.title ? field.title.replace(/"/g, '&quot;') : ''}" data-idx="${index}" data-type="title">
+      </label>
+      <label>Value
+        <input type="text" dir="auto" placeholder="e.g. 2024-2028" value="${field.value ? field.value.replace(/"/g, '&quot;') : ''}" data-idx="${index}" data-type="value">
+      </label>
+      <button type="button" class="custom-field-remove" title="Remove field" data-idx="${index}">✕</button>
+    `;
+    const titleInput = row.querySelector('[data-type="title"]');
+    const valInput = row.querySelector('[data-type="value"]');
+    const removeBtn = row.querySelector('.custom-field-remove');
+
+    titleInput.addEventListener('input', (e) => {
+      state.customFields[index].title = e.target.value;
+      save();
+      scheduleRender();
+    });
+    valInput.addEventListener('input', (e) => {
+      state.customFields[index].value = e.target.value;
+      save();
+      scheduleRender();
+    });
+    removeBtn.addEventListener('click', () => {
+      state.customFields.splice(index, 1);
+      save();
+      syncCustomFields();
+      scheduleRender();
+    });
+    container.appendChild(row);
+  });
+}
+
 function syncInputs() {
   $('text').value = state.text;
   for (const [k, fmt] of Object.entries(SLIDERS)) {
@@ -238,6 +286,7 @@ function syncInputs() {
   for (const k of ['headingInk', 'highlight', 'lineMode', 'headerMode', 'quality']) $(k).value = state[k];
   for (const k of ['pageNumbers', 'dateOnPages']) $(k).checked = state[k];
   for (const el of document.querySelectorAll('[data-field]')) el.value = state.fields[el.dataset.field] || '';
+  syncCustomFields();
   syncSelections();
 }
 
@@ -265,6 +314,20 @@ function bindControls() {
   }
   for (const el of document.querySelectorAll('[data-field]')) {
     el.addEventListener('input', () => set({ fields: { ...state.fields, [el.dataset.field]: el.value } }));
+  }
+  const addFieldBtn = $('add-field');
+  if (addFieldBtn) {
+    addFieldBtn.addEventListener('click', () => {
+      if (!Array.isArray(state.customFields)) state.customFields = [];
+      state.customFields.push({ title: '', value: '' });
+      save();
+      syncCustomFields();
+      const rows = document.querySelectorAll('.custom-field-row');
+      if (rows.length) {
+        const lastInput = rows[rows.length - 1].querySelector('input');
+        if (lastInput) lastInput.focus();
+      }
+    });
   }
   for (const b of document.querySelectorAll('#effect button')) {
     b.addEventListener('click', () => set({ effect: b.dataset.value }));
@@ -379,7 +442,8 @@ async function prepare(opts = state) {
   const font = getFont(opts.font, customFont);
   const l = getLanguage(opts.lang);
   const f = opts.fields || {};
-  await ensureFont(font, opts.text + Object.values(f).join('') + Object.values(l.labels).join(''));
+  const cf = (opts.customFields || []).map((c) => (c.title || '') + (c.value || '')).join('');
+  await ensureFont(font, opts.text + Object.values(f).join('') + cf + Object.values(l.labels).join(''));
   return layoutDocument(opts, font, l);
 }
 

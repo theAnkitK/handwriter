@@ -193,6 +193,54 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
 select, .fields input {
   width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 7px 9px; background: #fff; font-weight: 400;
 }
+.custom-fields { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.custom-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 8px;
+  align-items: end;
+}
+.custom-field-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+  font-weight: 550;
+  margin: 0;
+}
+.custom-field-row input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 9px;
+  background: #fff;
+  font-weight: 400;
+}
+.custom-field-remove {
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-field-remove:hover {
+  border-color: #b5131f;
+  color: #b5131f;
+  background: #fff5f5;
+}
+.add-field-btn {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  padding: 7px 12px;
+}
 .check { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 13.5px; }
 .check input { accent-color: var(--accent); width: 16px; height: 16px; }
 

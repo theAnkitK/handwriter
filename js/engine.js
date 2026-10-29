@@ -254,17 +254,18 @@ function wrapBlock(block, M, avail, opts, R, allowMistakes) {
 // ---------- header / cover ----------
 // Header rows: two "Label: value" pairs per line, or one per line when a
 // pair doesn't fit in its half of the page.
-function headerRows(f, t) {
+function headerRows(f, t, custom = []) {
   const pairs = [
     [t.name, f.name], [t.roll, f.roll], [t.cls, f.cls], [t.subject, f.subject],
     [t.date, f.date], [t.teacher, f.teacher],
-  ].filter(([, v]) => v && v.trim()).map(([k, v]) => `**${k}:** ${v.trim()}`);
+    ...(custom || []).map((c) => [(c.title || '').trim(), (c.value || '').trim()]),
+  ].filter(([k, v]) => k && v).map(([k, v]) => `**${k}:** ${v}`);
   const rows = [];
   for (let i = 0; i < pairs.length; i += 2) rows.push(pairs.slice(i, i + 2));
   return rows;
 }
 
-function coverText(f, t) {
+function coverText(f, t, custom = []) {
   const v = (k) => (f[k] || '').trim();
   const out = [];
   if (v('institute')) out.push(`# ${v('institute')}`, '');
@@ -281,6 +282,15 @@ function coverText(f, t) {
   }
   if (v('teacher')) out.push(`>> **${t.to}:**`, `>> ${v('teacher')}`, '');
   if (v('date')) out.push(`>> **${t.date}:** ${v('date')}`);
+  if (custom && custom.length) {
+    const valid = custom.filter((c) => (c.title || '').trim() && (c.value || '').trim());
+    if (valid.length) {
+      out.push('');
+      for (const c of valid) {
+        out.push(`>> **${c.title.trim()}:** ${c.value.trim()}`);
+      }
+    }
+  }
   return out.join('\n');
 }
 
@@ -349,9 +359,10 @@ export function layoutDocument(opts, font, lang) {
   let page = null;
   let idx = 0;
   const f = opts.fields || {};
+  const cf = opts.customFields || [];
   const headerLines = [];
   if (opts.headerMode === 'first' || opts.headerMode === 'every') {
-    for (const [a, b] of headerRows(f, lang.labels)) {
+    for (const [a, b] of headerRows(f, lang.labels, cf)) {
       const both = b ? wrapAll(`${a}\t${b}`, false) : [];
       if (both.length === 1 && both[0].w <= avail) headerLines.push(...both);
       else headerLines.push(...wrapAll(a, false), ...(b ? wrapAll(b, false) : []));
@@ -379,7 +390,7 @@ export function layoutDocument(opts, font, lang) {
   };
 
   if (opts.headerMode === 'cover') {
-    const cover = wrapAll(coverText(f, lang.labels), false).filter((l) => !l.pageBreak);
+    const cover = wrapAll(coverText(f, lang.labels, cf), false).filter((l) => !l.pageBreak);
     const coverStep = cover.length * 2 <= baselines.length ? 2 : 1;
     const start = Math.max(0, Math.floor((baselines.length - cover.length * coverStep) / 2.4));
     const cp = { lines: [], cover: true };
