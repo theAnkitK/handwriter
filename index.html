@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8X0SZBG6BS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8X0SZBG6BS');
+  </script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6306848599807882"
+       crossorigin="anonymous"></script>
+  <title>Text To Handwriting Converter - Create Assignments Now</title>
+  <meta name="description" content="Text to handwriting converter is a free tool that converts computer text into human handwriting text. It helps for making college assignments.">
+  <meta name="keywords" content="text to handwriting, text to handwriting converter, assignment handwriting generator, handwritten assignment maker, handwriting fonts, notebook paper generator">
+  <link rel="canonical" href="index.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Text to Handwriting by DaFontStyle">
+  <meta property="og:title" content="Text To Handwriting Converter - Create Assignments Now">
+  <meta property="og:description" content="Convert typed text into realistic handwriting on notebook, register, A4 and exam paper. 20 handwriting styles, free PDF download and print.">
+  <meta property="og:url" content="https://text-to-handwriting.dafontstyle.io/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#1b3d93">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Handwriting">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta property="og:image" content="https://text-to-handwriting.dafontstyle.io/icons/icon-512.png">
+  <link rel="preload" href="fonts/kalam/latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Text To Handwriting Converter",
+    "url": "https://text-to-handwriting.dafontstyle.io/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "DaFontStyle", "url": "https://dafontstyle.io/" },
+    "description": "Text to handwriting converter is a free tool that converts computer text into human handwriting text. It helps for making college assignments."
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Text to Handwriting home">
+      <img class="brand-mark" src="icons/icon-192.png" alt="DaFontStyle logo" width="36" height="36">
+      <span class="brand-text">
+        <span class="brand-name">Text to Handwriting</span>
+        <span class="brand-by">by DaFontStyle</span>
+      </span>
+    </a>
+    <nav>
+      <button type="button" class="install-btn" id="install" hidden>⤓ Install app</button>
+      <a href="index.html#tool">Converter</a>
+      <a href="index.html#how">How to use</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Text To Handwriting Converter</h1>
+    <p>Paste your text, pick a handwriting and a paper, and get pages that look written by hand. Made for assignments, lecture notes, practical files and projects.</p>
+  </section>
+
+  <main id="tool" class="tool">
+    <aside class="panel" aria-label="Settings">
+
+      <details class="card" open>
+        <summary>1. Your text</summary>
+        <div class="text-tools">
+          <span id="stats" class="stats"></span>
+          <label class="mini-btn">
+            <input type="file" id="import" accept=".txt,.md,.docx">
+            Import .txt / .docx
+          </label>
+          <button type="button" class="mini-btn" id="clear">Clear</button>
+        </div>
+        <div id="lang-hint" class="lang-hint" role="status" hidden></div>
+        <textarea id="text" spellcheck="false" dir="auto" aria-label="Text to convert"></textarea>
+        <div class="chips" id="markup">
+          <button type="button" data-wrap="# |" title="Centred, underlined heading"># Heading</button>
+          <button type="button" data-wrap="## |" title="Left sub-heading">## Sub</button>
+          <button type="button" data-wrap="**|**" title="Write with the heading / marker ink">**Marker ink**</button>
+          <button type="button" data-wrap="==|==" title="Highlighter">==Highlight==</button>
+          <button type="button" data-wrap="__|__" title="Underline">__Underline__</button>
+          <button type="button" data-wrap="&#10;---&#10;|" title="Start a new page">New page</button>
+        </div>
+        <p class="hint">Blank line = empty line on the page. <kbd>Tab</kbd> jumps to the middle column. <code>&gt;&gt; text</code> centres a line.</p>
+      </details>
+
+      <details class="card" open>
+        <summary>2. Language &amp; handwriting <span class="count" id="font-name"></span></summary>
+        <label class="select lang-select">Writing language
+          <select id="lang" aria-label="Writing language"></select>
+        </label>
+        <div class="font-grid" id="fonts" role="radiogroup" aria-label="Handwriting font"></div>
+        <label class="upload">
+          <input type="file" id="font-upload" accept=".ttf,.otf,.woff,.woff2">
+          <span>+ Use my own handwriting font (.ttf / .otf)</span>
+        </label>
+      </details>
+
+      <details class="card" open>
+        <summary>3. Paper <span class="count" id="paper-name"></span></summary>
+        <div class="paper-grid" id="papers" role="radiogroup" aria-label="Paper style"></div>
+        <div class="row" id="plain-row" hidden>
+          <label>Line spacing <output id="plainSpacing-out"></output></label>
+          <input type="range" id="plainSpacing" min="6" max="14" step="0.5">
+        </div>
+      </details>
+
+      <details class="card" open>
+        <summary>4. Pen &amp; ink</summary>
+        <div class="field-label">Ink colour</div>
+        <div class="swatches" id="inks"></div>
+        <div class="grid2">
+          <label class="select">Headings / marker ink
+            <select id="headingInk"></select>
+          </label>
+          <label class="select">Highlighter
+            <select id="highlight">
+              <option value="yellow">Yellow</option>
+              <option value="green">Green</option>
+              <option value="pink">Pink</option>
+              <option value="blue">Blue</option>
+              <option value="orange">Orange</option>
+            </select>
+          </label>
+        </div>
+        <div class="row"><label>Pen thickness <output id="penWeight-out"></output></label><input type="range" id="penWeight" min="0" max="1" step="0.05"></div>
+      </details>
+
+      <details class="card">
+        <summary>5. Writing adjustments</summary>
+        <div class="row"><label>Handwriting size <output id="size-out"></output></label><input type="range" id="size" min="0.6" max="1.5" step="0.02"></div>
+        <div class="row"><label>Natural messiness <output id="messiness-out"></output></label><input type="range" id="messiness" min="0" max="1" step="0.02"></div>
+        <div class="row"><label>Slant <output id="slant-out"></output></label><input type="range" id="slant" min="-10" max="18" step="1"></div>
+        <div class="row"><label>Letter spacing <output id="letterSpacing-out"></output></label><input type="range" id="letterSpacing" min="-2" max="5" step="0.25"></div>
+        <div class="row"><label>Word spacing <output id="wordSpacing-out"></output></label><input type="range" id="wordSpacing" min="0.5" max="2.2" step="0.05"></div>
+        <div class="row"><label>Left margin gap <output id="marginShift-out"></output></label><input type="range" id="marginShift" min="-4" max="20" step="0.5"></div>
+        <div class="row"><label>Cut-outs / mistakes <output id="mistakes-out"></output></label><input type="range" id="mistakes" min="0" max="1" step="0.05"></div>
+        <label class="select">Write on
+          <select id="lineMode">
+            <option value="every">Every line</option>
+            <option value="alternate">Alternate lines (double spacing)</option>
+          </select>
+        </label>
+      </details>
+
+      <details class="card">
+        <summary>6. Assignment header &amp; cover</summary>
+        <label class="select">Header
+          <select id="headerMode">
+            <option value="none">No header</option>
+            <option value="first">On first page</option>
+            <option value="every">On every page</option>
+            <option value="cover">Separate cover / title page</option>
+          </select>
+        </label>
+        <div class="grid2 fields">
+          <label>Name<input dir="auto" data-field="name" autocomplete="name"></label>
+          <label>Roll No.<input dir="auto" data-field="roll"></label>
+          <label>Class / Section<input dir="auto" data-field="cls"></label>
+          <label>Subject<input dir="auto" data-field="subject"></label>
+          <label>Submitted to<input dir="auto" data-field="teacher"></label>
+          <label>Date<input dir="auto" data-field="date"></label>
+          <label class="wide">Title / Topic<input dir="auto" data-field="title"></label>
+          <label>Institute (cover)<input dir="auto" data-field="institute"></label>
+          <label>Cover heading<input dir="auto" data-field="kind" placeholder="Assignment"></label>
+        </div>
+        <label class="check"><input type="checkbox" id="pageNumbers"> Write page numbers</label>
+        <label class="check"><input type="checkbox" id="dateOnPages"> Write the date on every page</label>
+      </details>
+
+      <details class="card">
+        <summary>7. Scan / photo look</summary>
+        <div class="seg" id="effect" role="radiogroup">
+          <button type="button" data-value="none">Clean</button>
+          <button type="button" data-value="scan">Scanned</button>
+          <button type="button" data-value="photo">Phone photo</button>
+        </div>
+        <label class="select">Download quality
+          <select id="quality">
+            <option value="0.8">Small file (for WhatsApp / email)</option>
+            <option value="1">Standard (150 DPI)</option>
+            <option value="1.5">HD (225 DPI, best for printing)</option>
+          </select>
+        </label>
+        <button type="button" class="link" id="reset">Reset all settings</button>
+      </details>
+    </aside>
+
+    <section class="preview" aria-label="Preview">
+      <div class="toolbar">
+        <span id="status" class="status">Preview</span>
+        <div class="range" title="Pages to download or print (empty = all)">
+          <span>Pages</span>
+          <input type="number" id="from" min="1" placeholder="1" inputmode="numeric" aria-label="First page">
+          <span>–</span>
+          <input type="number" id="to" min="1" placeholder="all" inputmode="numeric" aria-label="Last page">
+        </div>
+        <div class="actions">
+          <button type="button" class="btn ghost" id="regen" title="New natural variation of the same handwriting">↻ Re-write</button>
+          <button type="button" class="btn ghost" id="print">Print</button>
+          <button type="button" class="btn ghost" id="zip">Images (.zip)</button>
+          <button type="button" class="btn primary" id="pdf">Download PDF</button>
+        </div>
+      </div>
+      <div id="progress" class="progress" hidden>
+        <div class="bar"><span id="progress-bar"></span></div>
+        <span id="progress-text"></span>
+        <button type="button" class="btn ghost" id="cancel">Cancel</button>
+      </div>
+      <div id="pages" class="pages"></div>
+    </section>
+  </main>
+
+  <div id="print-root" aria-hidden="true"></div>
+
+  <article class="content">
+    <section id="how">
+      <h2>How to convert text to handwriting</h2>
+      <ol>
+        <li><strong>Paste your text</strong> into the box. Use <code># Title</code> for a heading, <code>**word**</code> for a different pen colour and <code>==word==</code> for a highlighter.</li>
+        <li><strong>Choose your language and handwriting.</strong> 35+ languages and 57 handwriting fonts, from neat student print to joined cursive, Urdu Nastaliq, Hindi, Bangla, Chinese and more. You can also upload your own handwriting font.</li>
+        <li><strong>Choose the paper</strong> &mdash; classic notebook, Pakistani register with Date / Page No., exam answer sheet, practical file, A4, graph, maths copy, 4-line English copy, Cornell notes and more.</li>
+        <li><strong>Add your header</strong> (name, roll number, class, subject, teacher, date) on the first page, on every page, or as a separate cover page.</li>
+        <li><strong>Download PDF, images or print</strong>. Every page is previewed before you download.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Why the pages look real</h2>
+      <p>Each letter is written with small natural changes in size, angle, position and ink pressure, so the same letter never looks exactly the same twice. Lines drift slightly like real handwriting, ink soaks into the paper, and the optional scan and phone-photo looks add paper grain, lighting and shadow. Press <em>Re-write</em> to get a fresh variation of the same text.</p>
+    </section>
+
+    <section>
+      <h2>Handwriting in your language</h2>
+      <p>Write assignments in English, Urdu (Nastaliq), Arabic, Persian, Hindi, Marathi, Nepali, Bangla, Punjabi (Gurmukhi and Shahmukhi), Gujarati, Tamil, Telugu, Kannada, Malayalam, Thai, Chinese (Simplified and Traditional), Japanese, Korean, Russian, Ukrainian, Greek, Hebrew, Spanish, French, German, Portuguese, Italian, Indonesian, Malay, Turkish, Polish, Vietnamese, Swahili and Filipino. Urdu, Arabic, Persian and Hebrew are written right to left, and the name, roll number and date labels in the header are translated too.</p>
+    </section>
+
+    <section>
+      <h2>Paper styles</h2>
+      <p>Classic notebook &middot; Pakistani register &middot; Assignment sheet with two margins &middot; College, wide and narrow ruled &middot; Spiral notebook &middot; Exam answer sheet &middot; Practical / lab file &middot; A4 lined printer paper &middot; Cornell notes &middot; English 4-line copy &middot; Maths squared copy &middot; Graph paper &middot; Engineering paper &middot; Dotted journal &middot; Yellow legal pad &middot; Old vintage paper &middot; Recycled brown paper &middot; Plain A4.</p>
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+      <details><summary>Is the text to handwriting converter free?</summary><p>Yes. It is completely free, with no sign-up and no watermark.</p></details>
+      <details><summary>Is my text uploaded anywhere?</summary><p>No. Everything is generated inside your browser. Your text never leaves your device.</p></details>
+      <details><summary>How do I print the assignment?</summary><p>Click <em>Print</em>, choose A4 paper and set margins to &ldquo;None&rdquo;. For best quality pick HD under &ldquo;Scan / photo look&rdquo; first.</p></details>
+      <details><summary>Can I make more than one page?</summary><p>Yes. Long text flows onto new pages automatically, or type <code>---</code> on its own line to start a new page. Even 100+ page research papers work: import a .txt or Word .docx file, and download all pages or just a range.</p></details>
+      <details><summary>Does it work on mobile?</summary><p>Yes, the converter works on phones, tablets and computers.</p></details>
+    </section>
+  </article>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Text to Handwriting &middot; a product of <a href="https://dafontstyle.io/">DaFontStyle</a></p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a520a430adc85fdf',t:'MTc5MzI2MDc3MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
